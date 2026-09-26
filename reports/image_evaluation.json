@@ -1,0 +1,68 @@
+{
+  "method": "leave-one-image-out",
+  "source_sha256": "8a2fb8b86d8b7f44f112870ef18b443304f9307782080726e842b9fc4e6fa161",
+  "class_order": [
+    "limpo",
+    "sujo"
+  ],
+  "accuracy": 1.0,
+  "balanced_accuracy": 1.0,
+  "confusion_matrix": [
+    [
+      4,
+      0
+    ],
+    [
+      0,
+      5
+    ]
+  ],
+  "photos": [
+    {
+      "path": "ImagemCopos/limpo14.jpg",
+      "actual": "limpo",
+      "predicted": "limpo"
+    },
+    {
+      "path": "ImagemCopos/limpo2.jpg",
+      "actual": "limpo",
+      "predicted": "limpo"
+    },
+    {
+      "path": "ImagemCopos/limpo20.jpg",
+      "actual": "limpo",
+      "predicted": "limpo"
+    },
+    {
+      "path": "ImagemCopos/limpo_copo.jpg",
+      "actual": "limpo",
+      "predicted": "limpo"
+    },
+    {
+      "path": "ImagemCopos/sujo12.jpg",
+      "actual": "sujo",
+      "predicted": "sujo"
+    },
+    {
+      "path": "ImagemCopos/sujo18.jpg",
+      "actual": "sujo",
+      "predicted": "sujo"
+    },
+    {
+      "path": "ImagemCopos/sujo19.jpg",
+      "actual": "sujo",
+      "predicted": "sujo"
+    },
+    {
+      "path": "ImagemCopos/sujo2.jpg",
+      "actual": "sujo",
+      "predicted": "sujo"
+    },
+    {
+      "path": "ImagemCopos/sujo9.jpg",
+      "actual": "sujo",
+      "predicted": "sujo"
+    }
+  ],
+  "limitation": "A característica e as regiões foram escolhidas após inspecionar estas fotos; esta avaliação não mede generalização externa."
+}

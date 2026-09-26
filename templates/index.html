@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Classificação de água</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="container">
+    <header>
+      <p class="eyebrow">Projeto Copo</p>
+      <h1>A água do copo parece limpa ou suja?</h1>
+      <p>Envie uma foto e marque a região da água. O resultado é uma classificação experimental baseada nas cores dos pixels, não uma análise de potabilidade.</p>
+    </header>
+
+    <section class="card">
+      <form method="post" enctype="multipart/form-data" id="upload-form">
+        <label for="photo" class="field-label">Foto do copo</label>
+        <input id="photo" name="photo" type="file" accept="image/jpeg,image/png,image/webp" required>
+        <p class="hint">JPEG, PNG ou WebP, até 8 MB. Fotografe com luz uniforme e fundo neutro. Marque apenas a água, evitando borda, mesa, fundo e reflexos.</p>
+        <div id="selection-area" class="selection-area" hidden>
+          <p class="field-label">Arraste sobre a foto para marcar a água</p>
+          <div id="image-wrap" class="image-wrap">
+            <img id="image-preview" alt="Prévia da foto enviada">
+            <div id="selection" class="selection" hidden></div>
+          </div>
+          <button type="button" id="clear-selection" class="text-button">Limpar seleção</button>
+        </div>
+        <input type="hidden" name="crop_left" id="crop_left">
+        <input type="hidden" name="crop_top" id="crop_top">
+        <input type="hidden" name="crop_right" id="crop_right">
+        <input type="hidden" name="crop_bottom" id="crop_bottom">
+        <button type="submit" class="primary">Classificar água</button>
+      </form>
+      {% if error %}<p class="message error" role="alert">{{ error }}</p>{% endif %}
+      {% if result %}
+      <div class="result" role="status">
+        <strong>{{ result }}</strong>
+      </div>
+      {% endif %}
+    </section>
+    {% if preview %}<section class="card"><h2>Região analisada</h2><img class="result-photo" src="{{ preview }}" alt="Recorte da água analisado"></section>{% endif %}
+    <footer>Modelo exploratório treinado em {{ training_records }} {{ training_source }}. O resultado pode mudar com a iluminação e a câmera; não indica potabilidade.</footer>
+  </main>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

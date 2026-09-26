@@ -1,0 +1,11 @@
+[
+  {"path": "ImagemCopos/limpo14.jpg", "label": "limpo", "crop": [0.43, 0.25, 0.71, 0.53]},
+  {"path": "ImagemCopos/limpo2.jpg", "label": "limpo", "crop": [0.39, 0.31, 0.66, 0.65]},
+  {"path": "ImagemCopos/limpo20.jpg", "label": "limpo", "crop": [0.38, 0.31, 0.65, 0.66]},
+  {"path": "ImagemCopos/limpo_copo.jpg", "label": "limpo", "crop": [0.35, 0.34, 0.65, 0.68]},
+  {"path": "ImagemCopos/sujo12.jpg", "label": "sujo", "crop": [0.39, 0.32, 0.65, 0.72]},
+  {"path": "ImagemCopos/sujo18.jpg", "label": "sujo", "crop": [0.31, 0.36, 0.69, 0.72]},
+  {"path": "ImagemCopos/sujo19.jpg", "label": "sujo", "crop": [0.31, 0.36, 0.69, 0.72]},
+  {"path": "ImagemCopos/sujo2.jpg", "label": "sujo", "crop": [0.31, 0.36, 0.69, 0.72]},
+  {"path": "ImagemCopos/sujo9.jpg", "label": "sujo", "crop": [0.39, 0.32, 0.65, 0.72]}
+]

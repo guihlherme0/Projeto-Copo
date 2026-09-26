@@ -1,0 +1,28 @@
+:root { font-family: system-ui, -apple-system, Segoe UI, sans-serif; color: #172b3a; background: #edf4f7; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+.container { max-width: 780px; margin: 0 auto; padding: 44px 20px 60px; }
+header { margin-bottom: 28px; }
+.eyebrow { color: #087a8c; font-weight: 800; text-transform: uppercase; letter-spacing: .14em; font-size: .75rem; }
+h1 { font-size: clamp(2rem, 5vw, 3rem); line-height: 1.12; margin: 8px 0 14px; }
+h2 { font-size: 1.15rem; margin-top: 0; }
+p { line-height: 1.55; }
+.card { background: white; border: 1px solid #dce7ec; box-shadow: 0 8px 28px #18394b0b; border-radius: 18px; padding: 26px; margin-bottom: 20px; }
+.field-label { display: block; font-weight: 700; margin-bottom: 10px; }
+input[type=file] { display: block; max-width: 100%; font: inherit; }
+.hint { color: #526875; font-size: .9rem; }
+.selection-area { margin: 22px 0; }
+.image-wrap { display: inline-block; position: relative; max-width: 100%; line-height: 0; touch-action: none; cursor: crosshair; }
+.image-wrap img { max-width: 100%; max-height: 430px; display: block; }
+.selection { position: absolute; border: 3px solid #00b4c7; background: #00b4c733; pointer-events: none; }
+.text-button { border: 0; background: none; color: #006e7d; cursor: pointer; padding: 12px 0; font: inherit; text-decoration: underline; display: block; }
+.primary { display: inline-block; background: #087a8c; color: white; padding: 12px 20px; border: 0; border-radius: 9px; font: inherit; font-weight: 700; cursor: pointer; margin-top: 8px; }
+.primary:hover { background: #075e6b; }
+.message, .result { border-radius: 10px; padding: 16px; margin: 20px 0 0; }
+.error { background: #fff0ed; color: #9b291d; }
+.result { background: #e8f7f6; border: 1px solid #9bd9d4; }
+.result span { display: block; font-size: .8rem; text-transform: uppercase; letter-spacing: .1em; }
+.result strong { display: block; font-size: 1.6rem; margin: 4px 0; }
+.result p { margin-bottom: 0; }
+.result-photo { max-width: 100%; max-height: 360px; border-radius: 8px; }
+footer { color: #526875; font-size: .85rem; }
