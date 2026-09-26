@@ -1,4 +1,60 @@
-.venv/
+# Ambientes virtuais e configuracoes locais
+/.venv/
+/venv/
+/env/
+/ENV/
+.env
+.env.*
+!.env.example
+
+# Python: bytecode, caches e distribuicoes
 __pycache__/
+*.py[cod]
+*$py.class
+/.Python
+*.egg-info/
+/build/
+/dist/
+/.eggs/
+/.tox/
+/.nox/
+
+# Testes, cobertura e analise estatica
 .pytest_cache/
-*.pyc
+.mypy_cache/
+.ruff_cache/
+.hypothesis/
+.coverage
+.coverage.*
+/htmlcov/
+/coverage.xml
+/junit.xml
+
+# Notebooks e arquivos temporarios
+.ipynb_checkpoints/
+*.log
+*.tmp
+*.bak
+*.swp
+*~
+/tmp/
+/logs/
+/uploads/
+/instance/
+
+# Preferencias pessoais do editor (configuracoes compartilhadas continuam no Git)
+/.idea/workspace.xml
+/.idea/tasks.xml
+/.idea/shelf/
+/.idea/httpRequests/
+/.vscode/
+
+# Arquivos do sistema operacional
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Modelos experimentais; os modelos usados pelo projeto ficam versionaveis
+/models/*.joblib
+!/models/water_model.joblib
+!/models/water_random_forest.joblib
