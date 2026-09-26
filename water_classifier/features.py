@@ -66,6 +66,13 @@ def select_region(image: Image.Image, crop=None) -> Image.Image:
     return image
 
 
+def focus_center(image: Image.Image) -> Image.Image:
+    """Usa a metade central da seleção para reduzir bordas e fundo."""
+    width, height = image.size
+    return image.crop((round(width * 0.25), round(height * 0.25),
+                       round(width * 0.75), round(height * 0.75)))
+
+
 def extract_histogram(image: Image.Image, crop=None) -> np.ndarray:
     """Contagens inteiras em r0..255, g0..255, b0..255 da região selecionada."""
     image = select_region(image, crop)

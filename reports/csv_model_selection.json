@@ -1,0 +1,289 @@
+{
+  "source_sha256": "2639238a463b61909fb3115a0026517a3a3f2e825503feaf0d33a8d33935ae10",
+  "data_audit": {
+    "records": 50,
+    "features": 768,
+    "classes": {
+      "limpo": 14,
+      "sujo": 36
+    },
+    "missing": 0,
+    "duplicate_feature_rows": 0,
+    "pixel_counts": {
+      "12979200": 23,
+      "12000000": 27
+    },
+    "pixel_counts_by_class": {
+      "limpo": {
+        "12979200": 12,
+        "12000000": 2
+      },
+      "sujo": {
+        "12000000": 25,
+        "12979200": 11
+      }
+    },
+    "min_count": 0,
+    "max_count": 800845
+  },
+  "evaluation": {
+    "method": "RepeatedStratifiedKFold",
+    "folds": 5,
+    "repeats": 5,
+    "random_state": 42,
+    "class_order": [
+      "limpo",
+      "sujo"
+    ],
+    "selection_metric": "fold_macro_f1_mean"
+  },
+  "algorithms": {
+    "svm_rbf": {
+      "fold_macro_f1_mean": 0.7480564435564436,
+      "fold_macro_f1_std": 0.11361977315326723,
+      "accuracy": 0.784,
+      "per_class": {
+        "limpo": {
+          "precision": 0.5851063829787234,
+          "recall": 0.7857142857142857,
+          "f1-score": 0.6707317073170732,
+          "support": 70.0
+        },
+        "sujo": {
+          "precision": 0.9038461538461539,
+          "recall": 0.7833333333333333,
+          "f1-score": 0.8392857142857143,
+          "support": 180.0
+        }
+      },
+      "confusion_matrix": [
+        [
+          55,
+          15
+        ],
+        [
+          39,
+          141
+        ]
+      ]
+    },
+    "floresta_aleatoria": {
+      "fold_macro_f1_mean": 0.7381129426129427,
+      "fold_macro_f1_std": 0.12106336611623501,
+      "accuracy": 0.788,
+      "per_class": {
+        "limpo": {
+          "precision": 0.6,
+          "recall": 0.7285714285714285,
+          "f1-score": 0.6580645161290323,
+          "support": 70.0
+        },
+        "sujo": {
+          "precision": 0.8848484848484849,
+          "recall": 0.8111111111111111,
+          "f1-score": 0.8463768115942029,
+          "support": 180.0
+        }
+      },
+      "confusion_matrix": [
+        [
+          51,
+          19
+        ],
+        [
+          34,
+          146
+        ]
+      ]
+    },
+    "knn_3": {
+      "fold_macro_f1_mean": 0.6893656376303434,
+      "fold_macro_f1_std": 0.14572971865626436,
+      "accuracy": 0.748,
+      "per_class": {
+        "limpo": {
+          "precision": 0.5432098765432098,
+          "recall": 0.6285714285714286,
+          "f1-score": 0.5827814569536424,
+          "support": 70.0
+        },
+        "sujo": {
+          "precision": 0.8461538461538461,
+          "recall": 0.7944444444444444,
+          "f1-score": 0.8194842406876791,
+          "support": 180.0
+        }
+      },
+      "confusion_matrix": [
+        [
+          44,
+          26
+        ],
+        [
+          37,
+          143
+        ]
+      ]
+    }
+  },
+  "winner": "svm_rbf",
+  "photo_check": {
+    "region": "full_image",
+    "note": "Fotos externas ao CSV; não participam da escolha do vencedor.",
+    "algorithms": {
+      "svm_rbf": {
+        "correct": 5,
+        "clean_correct": 0,
+        "photos": [
+          {
+            "path": "ImagemCopos/limpo14.jpg",
+            "actual": "limpo",
+            "predicted": "sujo"
+          },
+          {
+            "path": "ImagemCopos/limpo2.jpg",
+            "actual": "limpo",
+            "predicted": "sujo"
+          },
+          {
+            "path": "ImagemCopos/limpo20.jpg",
+            "actual": "limpo",
+            "predicted": "sujo"
+          },
+          {
+            "path": "ImagemCopos/limpo_copo.jpg",
+            "actual": "limpo",
+            "predicted": "sujo"
+          },
+          {
+            "path": "ImagemCopos/sujo12.jpg",
+            "actual": "sujo",
+            "predicted": "sujo"
+          },
+          {
+            "path": "ImagemCopos/sujo18.jpg",
+            "actual": "sujo",
+            "predicted": "sujo"
+          },
+          {
+            "path": "ImagemCopos/sujo19.jpg",
+            "actual": "sujo",
+            "predicted": "sujo"
+          },
+          {
+            "path": "ImagemCopos/sujo2.jpg",
+            "actual": "sujo",
+            "predicted": "sujo"
+          },
+          {
+            "path": "ImagemCopos/sujo9.jpg",
+            "actual": "sujo",
+            "predicted": "sujo"
+          }
+        ]
+      },
+      "floresta_aleatoria": {
+        "correct": 5,
+        "clean_correct": 0,
+        "photos": [
+          {
+            "path": "ImagemCopos/limpo14.jpg",
+            "actual": "limpo",
+            "predicted": "sujo"
+          },
+          {
+            "path": "ImagemCopos/limpo2.jpg",
+            "actual": "limpo",
+            "predicted": "sujo"
+          },
+          {
+            "path": "ImagemCopos/limpo20.jpg",
+            "actual": "limpo",
+            "predicted": "sujo"
+          },
+          {
+            "path": "ImagemCopos/limpo_copo.jpg",
+            "actual": "limpo",
+            "predicted": "sujo"
+          },
+          {
+            "path": "ImagemCopos/sujo12.jpg",
+            "actual": "sujo",
+            "predicted": "sujo"
+          },
+          {
+            "path": "ImagemCopos/sujo18.jpg",
+            "actual": "sujo",
+            "predicted": "sujo"
+          },
+          {
+            "path": "ImagemCopos/sujo19.jpg",
+            "actual": "sujo",
+            "predicted": "sujo"
+          },
+          {
+            "path": "ImagemCopos/sujo2.jpg",
+            "actual": "sujo",
+            "predicted": "sujo"
+          },
+          {
+            "path": "ImagemCopos/sujo9.jpg",
+            "actual": "sujo",
+            "predicted": "sujo"
+          }
+        ]
+      },
+      "knn_3": {
+        "correct": 5,
+        "clean_correct": 0,
+        "photos": [
+          {
+            "path": "ImagemCopos/limpo14.jpg",
+            "actual": "limpo",
+            "predicted": "sujo"
+          },
+          {
+            "path": "ImagemCopos/limpo2.jpg",
+            "actual": "limpo",
+            "predicted": "sujo"
+          },
+          {
+            "path": "ImagemCopos/limpo20.jpg",
+            "actual": "limpo",
+            "predicted": "sujo"
+          },
+          {
+            "path": "ImagemCopos/limpo_copo.jpg",
+            "actual": "limpo",
+            "predicted": "sujo"
+          },
+          {
+            "path": "ImagemCopos/sujo12.jpg",
+            "actual": "sujo",
+            "predicted": "sujo"
+          },
+          {
+            "path": "ImagemCopos/sujo18.jpg",
+            "actual": "sujo",
+            "predicted": "sujo"
+          },
+          {
+            "path": "ImagemCopos/sujo19.jpg",
+            "actual": "sujo",
+            "predicted": "sujo"
+          },
+          {
+            "path": "ImagemCopos/sujo2.jpg",
+            "actual": "sujo",
+            "predicted": "sujo"
+          },
+          {
+            "path": "ImagemCopos/sujo9.jpg",
+            "actual": "sujo",
+            "predicted": "sujo"
+          }
+        ]
+      }
+    }
+  }
+}

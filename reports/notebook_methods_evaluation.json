@@ -1,0 +1,273 @@
+{
+  "csv_sha256": "2639238a463b61909fb3115a0026517a3a3f2e825503feaf0d33a8d33935ae10",
+  "csv_records": 50,
+  "photo_manifest_sha256": "8a2fb8b86d8b7f44f112870ef18b443304f9307782080726e842b9fc4e6fa161",
+  "evaluation": "RepeatedStratifiedKFold, 5 dobras × 5 repetições, random_state=42; seleção ajustada somente no treino de cada dobra.",
+  "photo_check": "Nove fotos inteiras; teste adicional, não usado para escolher o vencedor no CSV.",
+  "class_order": [
+    "limpo",
+    "sujo"
+  ],
+  "algorithms": {
+    "arvore_contagens_brutas": {
+      "fold_macro_f1_mean": 0.6416175491175491,
+      "fold_macro_f1_std": 0.14543690499891604,
+      "repeated_cv_accuracy": 0.716,
+      "repeated_cv_confusion_matrix": [
+        [
+          40,
+          30
+        ],
+        [
+          41,
+          139
+        ]
+      ],
+      "photos_correct": 7,
+      "clean_photos_correct": 2,
+      "photo_predictions": [
+        {
+          "path": "ImagemCopos/limpo14.jpg",
+          "actual": "limpo",
+          "predicted": "sujo"
+        },
+        {
+          "path": "ImagemCopos/limpo2.jpg",
+          "actual": "limpo",
+          "predicted": "limpo"
+        },
+        {
+          "path": "ImagemCopos/limpo20.jpg",
+          "actual": "limpo",
+          "predicted": "limpo"
+        },
+        {
+          "path": "ImagemCopos/limpo_copo.jpg",
+          "actual": "limpo",
+          "predicted": "sujo"
+        },
+        {
+          "path": "ImagemCopos/sujo12.jpg",
+          "actual": "sujo",
+          "predicted": "sujo"
+        },
+        {
+          "path": "ImagemCopos/sujo18.jpg",
+          "actual": "sujo",
+          "predicted": "sujo"
+        },
+        {
+          "path": "ImagemCopos/sujo19.jpg",
+          "actual": "sujo",
+          "predicted": "sujo"
+        },
+        {
+          "path": "ImagemCopos/sujo2.jpg",
+          "actual": "sujo",
+          "predicted": "sujo"
+        },
+        {
+          "path": "ImagemCopos/sujo9.jpg",
+          "actual": "sujo",
+          "predicted": "sujo"
+        }
+      ],
+      "fit_warning_count": 0
+    },
+    "knn_5_contagens_brutas": {
+      "fold_macro_f1_mean": 0.7071504345327875,
+      "fold_macro_f1_std": 0.16158740106771385,
+      "repeated_cv_accuracy": 0.808,
+      "repeated_cv_confusion_matrix": [
+        [
+          35,
+          35
+        ],
+        [
+          13,
+          167
+        ]
+      ],
+      "photos_correct": 5,
+      "clean_photos_correct": 0,
+      "photo_predictions": [
+        {
+          "path": "ImagemCopos/limpo14.jpg",
+          "actual": "limpo",
+          "predicted": "sujo"
+        },
+        {
+          "path": "ImagemCopos/limpo2.jpg",
+          "actual": "limpo",
+          "predicted": "sujo"
+        },
+        {
+          "path": "ImagemCopos/limpo20.jpg",
+          "actual": "limpo",
+          "predicted": "sujo"
+        },
+        {
+          "path": "ImagemCopos/limpo_copo.jpg",
+          "actual": "limpo",
+          "predicted": "sujo"
+        },
+        {
+          "path": "ImagemCopos/sujo12.jpg",
+          "actual": "sujo",
+          "predicted": "sujo"
+        },
+        {
+          "path": "ImagemCopos/sujo18.jpg",
+          "actual": "sujo",
+          "predicted": "sujo"
+        },
+        {
+          "path": "ImagemCopos/sujo19.jpg",
+          "actual": "sujo",
+          "predicted": "sujo"
+        },
+        {
+          "path": "ImagemCopos/sujo2.jpg",
+          "actual": "sujo",
+          "predicted": "sujo"
+        },
+        {
+          "path": "ImagemCopos/sujo9.jpg",
+          "actual": "sujo",
+          "predicted": "sujo"
+        }
+      ],
+      "fit_warning_count": 0
+    },
+    "chi2_200_arvore": {
+      "fold_macro_f1_mean": 0.6702649572649573,
+      "fold_macro_f1_std": 0.17608981189125217,
+      "repeated_cv_accuracy": 0.744,
+      "repeated_cv_confusion_matrix": [
+        [
+          38,
+          32
+        ],
+        [
+          32,
+          148
+        ]
+      ],
+      "photos_correct": 7,
+      "clean_photos_correct": 3,
+      "photo_predictions": [
+        {
+          "path": "ImagemCopos/limpo14.jpg",
+          "actual": "limpo",
+          "predicted": "sujo"
+        },
+        {
+          "path": "ImagemCopos/limpo2.jpg",
+          "actual": "limpo",
+          "predicted": "limpo"
+        },
+        {
+          "path": "ImagemCopos/limpo20.jpg",
+          "actual": "limpo",
+          "predicted": "limpo"
+        },
+        {
+          "path": "ImagemCopos/limpo_copo.jpg",
+          "actual": "limpo",
+          "predicted": "limpo"
+        },
+        {
+          "path": "ImagemCopos/sujo12.jpg",
+          "actual": "sujo",
+          "predicted": "sujo"
+        },
+        {
+          "path": "ImagemCopos/sujo18.jpg",
+          "actual": "sujo",
+          "predicted": "sujo"
+        },
+        {
+          "path": "ImagemCopos/sujo19.jpg",
+          "actual": "sujo",
+          "predicted": "sujo"
+        },
+        {
+          "path": "ImagemCopos/sujo2.jpg",
+          "actual": "sujo",
+          "predicted": "sujo"
+        },
+        {
+          "path": "ImagemCopos/sujo9.jpg",
+          "actual": "sujo",
+          "predicted": "limpo"
+        }
+      ],
+      "fit_warning_count": 0
+    },
+    "anova_500_arvore": {
+      "fold_macro_f1_mean": 0.696313412078118,
+      "fold_macro_f1_std": 0.14079468341271464,
+      "repeated_cv_accuracy": 0.768,
+      "repeated_cv_confusion_matrix": [
+        [
+          42,
+          28
+        ],
+        [
+          30,
+          150
+        ]
+      ],
+      "photos_correct": 8,
+      "clean_photos_correct": 3,
+      "photo_predictions": [
+        {
+          "path": "ImagemCopos/limpo14.jpg",
+          "actual": "limpo",
+          "predicted": "limpo"
+        },
+        {
+          "path": "ImagemCopos/limpo2.jpg",
+          "actual": "limpo",
+          "predicted": "limpo"
+        },
+        {
+          "path": "ImagemCopos/limpo20.jpg",
+          "actual": "limpo",
+          "predicted": "limpo"
+        },
+        {
+          "path": "ImagemCopos/limpo_copo.jpg",
+          "actual": "limpo",
+          "predicted": "sujo"
+        },
+        {
+          "path": "ImagemCopos/sujo12.jpg",
+          "actual": "sujo",
+          "predicted": "sujo"
+        },
+        {
+          "path": "ImagemCopos/sujo18.jpg",
+          "actual": "sujo",
+          "predicted": "sujo"
+        },
+        {
+          "path": "ImagemCopos/sujo19.jpg",
+          "actual": "sujo",
+          "predicted": "sujo"
+        },
+        {
+          "path": "ImagemCopos/sujo2.jpg",
+          "actual": "sujo",
+          "predicted": "sujo"
+        },
+        {
+          "path": "ImagemCopos/sujo9.jpg",
+          "actual": "sujo",
+          "predicted": "sujo"
+        }
+      ],
+      "fit_warning_count": 52
+    }
+  }
+}

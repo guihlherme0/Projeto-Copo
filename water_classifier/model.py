@@ -4,9 +4,7 @@ import hashlib
 from pathlib import Path
 
 import joblib
-from sklearn.dummy import DummyClassifier
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.linear_model import LogisticRegression
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
@@ -19,15 +17,6 @@ from .image_training import image_pipeline, load_image_dataset
 
 def candidates():
     return {
-        "referencia_maioria": Pipeline([
-            ("histograma", NormalizeHistograms()),
-            ("classificador", DummyClassifier(strategy="most_frequent")),
-        ]),
-        "regressao_logistica": Pipeline([
-            ("histograma", NormalizeHistograms()),
-            ("escala", StandardScaler()),
-            ("classificador", LogisticRegression(C=0.1, class_weight="balanced", max_iter=3000, random_state=42)),
-        ]),
         "svm_rbf": Pipeline([
             ("histograma", NormalizeHistograms()),
             ("escala", StandardScaler()),
@@ -46,10 +35,11 @@ def candidates():
 
 
 def train_final(csv_path, model_path, algorithm):
-    if algorithm not in candidates() or algorithm == "referencia_maioria":
+    available = candidates()
+    if algorithm not in available:
         raise ValueError("Algoritmo final inválido.")
     features, labels = load_dataset(csv_path)
-    pipeline = candidates()[algorithm].fit(features, labels)
+    pipeline = available[algorithm].fit(features, labels)
     bundle = {
         "pipeline": pipeline,
         "algorithm": algorithm,
@@ -57,7 +47,7 @@ def train_final(csv_path, model_path, algorithm):
         "classes": tuple(pipeline.classes_),
         "source_sha256": hashlib.sha256(Path(csv_path).read_bytes()).hexdigest(),
         "training_records": len(labels),
-        "feature_contract": "Histograma RGB de 256 níveis por canal, contagens inteiras; normalização por canal no Pipeline.",
+        "region": "full_image",
     }
     Path(model_path).parent.mkdir(parents=True, exist_ok=True)
     joblib.dump(bundle, model_path)
@@ -65,7 +55,7 @@ def train_final(csv_path, model_path, algorithm):
 
 
 def train_from_images(manifest_path, model_path):
-    features, labels, names, source_sha256 = load_image_dataset(manifest_path)
+    features, labels, _, source_sha256 = load_image_dataset(manifest_path, include_focus=True)
     pipeline = image_pipeline().fit(features, labels)
     bundle = {
         "pipeline": pipeline,
@@ -73,9 +63,8 @@ def train_from_images(manifest_path, model_path):
         "feature_columns": FEATURE_COLUMNS,
         "classes": tuple(pipeline.classes_),
         "source_sha256": source_sha256,
-        "training_records": len(labels),
-        "training_images": names,
-        "feature_contract": "Histograma RGB da região da água; diferença entre médias R e G após normalização por canal.",
+        "training_records": len(labels) // 2,
+        "region": "water_crop",
     }
     Path(model_path).parent.mkdir(parents=True, exist_ok=True)
     joblib.dump(bundle, model_path)
@@ -84,6 +73,8 @@ def train_from_images(manifest_path, model_path):
 
 def load_model(model_path):
     bundle = joblib.load(model_path)
-    if tuple(bundle["feature_columns"]) != FEATURE_COLUMNS or set(bundle["classes"]) != set(CLASSES):
+    if (tuple(bundle["feature_columns"]) != FEATURE_COLUMNS
+            or set(bundle["classes"]) != set(CLASSES)
+            or bundle.get("region") not in {"full_image", "water_crop"}):
         raise ValueError("Modelo incompatível com o contrato de características.")
     return bundle

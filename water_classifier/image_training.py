@@ -10,7 +10,7 @@ from sklearn.base import BaseEstimator, ClassifierMixin
 from sklearn.pipeline import Pipeline
 
 from .data import CLASSES
-from .features import MeanRedGreen, NormalizeHistograms, extract_histogram
+from .features import MeanRedGreen, NormalizeHistograms, extract_histogram, focus_center, select_region
 
 
 class ColorIntervalClassifier(ClassifierMixin, BaseEstimator):
@@ -54,12 +54,13 @@ def image_pipeline():
     ])
 
 
-def load_image_dataset(manifest_path):
+def load_image_dataset(manifest_path, use_crop=True, include_focus=False):
     manifest_path = Path(manifest_path)
     entries = json.loads(manifest_path.read_text(encoding="utf-8"))
     if not isinstance(entries, list) or not entries:
         raise ValueError("O manifesto precisa listar as fotos de treino.")
     features, labels, names = [], [], []
+    seen = set()
     digest = hashlib.sha256()
     digest.update(manifest_path.read_bytes())
     for entry in entries:
@@ -67,17 +68,24 @@ def load_image_dataset(manifest_path):
             raise ValueError("Entrada inválida no manifesto de fotos.")
         if entry["label"] not in CLASSES or not isinstance(entry["path"], str):
             raise ValueError("Foto com caminho ou classe inválida.")
+        if entry["path"] in seen:
+            raise ValueError("A mesma foto aparece mais de uma vez no manifesto.")
+        seen.add(entry["path"])
         path = manifest_path.parent / entry["path"]
         if not path.is_file():
             raise ValueError(f"Foto de treino não encontrada: {path}")
         with Image.open(path) as image:
-            features.append(extract_histogram(image, entry["crop"]))
+            region = select_region(image, entry["crop"] if use_crop else None)
+            features.append(extract_histogram(region))
+            if include_focus:
+                features.append(extract_histogram(focus_center(region)))
         labels.append(entry["label"])
         names.append(entry["path"])
+        if include_focus:
+            labels.append(entry["label"])
+            names.append(entry["path"])
         digest.update(entry["path"].encode("utf-8"))
         digest.update(path.read_bytes())
-    if len(set(names)) != len(names):
-        raise ValueError("A mesma foto aparece mais de uma vez no manifesto.")
     if set(labels) != set(CLASSES):
         raise ValueError("O manifesto precisa conter as duas classes.")
     return np.asarray(features), np.asarray(labels), names, digest.hexdigest()

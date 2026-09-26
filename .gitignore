@@ -57,4 +57,4 @@ Desktop.ini
 # Modelos experimentais; os modelos usados pelo projeto ficam versionaveis
 /models/*.joblib
 !/models/water_model.joblib
-!/models/water_random_forest.joblib
+!/models/water_image_interval.joblib

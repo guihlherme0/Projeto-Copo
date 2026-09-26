@@ -11,24 +11,28 @@ from water_classifier.image_training import image_pipeline, load_image_dataset
 
 
 def evaluate(manifest_path):
-    features, labels, names, source_sha256 = load_image_dataset(manifest_path)
+    features, labels, names, source_sha256 = load_image_dataset(manifest_path, include_focus=True)
     predictions = []
-    for held_out in range(len(labels)):
-        train = [index for index in range(len(labels)) if index != held_out]
+    for held_out in range(len(labels) // 2):
+        train = [index for index in range(len(labels)) if index // 2 != held_out]
         model = image_pipeline().fit(features[train], labels[train])
-        predictions.append(model.predict(features[held_out:held_out + 1])[0])
+        # A interface usa a metade central da seleção; as duas versões da
+        # foto deixada de fora ficam fora do ajuste desta rodada.
+        predictions.append(model.predict(features[2 * held_out + 1:2 * held_out + 2])[0])
+    actual = labels[::2]
+    paths = names[::2]
     return {
         "method": "leave-one-image-out",
         "source_sha256": source_sha256,
         "class_order": list(CLASSES),
-        "accuracy": float(accuracy_score(labels, predictions)),
-        "balanced_accuracy": float(balanced_accuracy_score(labels, predictions)),
-        "confusion_matrix": confusion_matrix(labels, predictions, labels=CLASSES).tolist(),
+        "accuracy": float(accuracy_score(actual, predictions)),
+        "balanced_accuracy": float(balanced_accuracy_score(actual, predictions)),
+        "confusion_matrix": confusion_matrix(actual, predictions, labels=CLASSES).tolist(),
         "photos": [
             {"path": path, "actual": actual, "predicted": predicted}
-            for path, actual, predicted in zip(names, labels, predictions)
+            for path, actual, predicted in zip(paths, actual, predictions)
         ],
-        "limitation": "A característica e as regiões foram escolhidas após inspecionar estas fotos; esta avaliação não mede generalização externa.",
+        "limitation": "As duas versões de cada foto são mantidas juntas fora do treino; a característica e as regiões foram escolhidas após inspecionar estas fotos, portanto a avaliação não mede generalização externa.",
     }
 
 

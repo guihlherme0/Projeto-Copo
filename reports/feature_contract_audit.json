@@ -1,0 +1,232 @@
+{
+  "csv_sha256": "2639238a463b61909fb3115a0026517a3a3f2e825503feaf0d33a8d33935ae10",
+  "model_algorithm": "svm_rbf",
+  "csv_records": 50,
+  "photos_count": 9,
+  "distance_definition": "Distância euclidiana após normalização RGB e StandardScaler do SVM; diagnóstico descritivo, não limiar de rejeição calibrado.",
+  "csv_nearest_neighbor_distance_p95": 33.29,
+  "photos": [
+    {
+      "path": "ImagemCopos/limpo14.jpg",
+      "label": "limpo",
+      "dimensions_after_exif": [
+        3120,
+        4160
+      ],
+      "exact_csv_match": false,
+      "nearest_csv_distance": 81.37,
+      "prediction_full_image": "sujo"
+    },
+    {
+      "path": "ImagemCopos/limpo2.jpg",
+      "label": "limpo",
+      "dimensions_after_exif": [
+        3000,
+        4000
+      ],
+      "exact_csv_match": false,
+      "nearest_csv_distance": 165.75,
+      "prediction_full_image": "sujo"
+    },
+    {
+      "path": "ImagemCopos/limpo20.jpg",
+      "label": "limpo",
+      "dimensions_after_exif": [
+        3120,
+        4160
+      ],
+      "exact_csv_match": false,
+      "nearest_csv_distance": 70.35,
+      "prediction_full_image": "sujo"
+    },
+    {
+      "path": "ImagemCopos/limpo_copo.jpg",
+      "label": "limpo",
+      "dimensions_after_exif": [
+        539,
+        626
+      ],
+      "exact_csv_match": false,
+      "nearest_csv_distance": 6817549.2,
+      "prediction_full_image": "sujo"
+    },
+    {
+      "path": "ImagemCopos/sujo12.jpg",
+      "label": "sujo",
+      "dimensions_after_exif": [
+        3000,
+        4000
+      ],
+      "exact_csv_match": false,
+      "nearest_csv_distance": 27908.65,
+      "prediction_full_image": "sujo"
+    },
+    {
+      "path": "ImagemCopos/sujo18.jpg",
+      "label": "sujo",
+      "dimensions_after_exif": [
+        3000,
+        4000
+      ],
+      "exact_csv_match": false,
+      "nearest_csv_distance": 297.47,
+      "prediction_full_image": "sujo"
+    },
+    {
+      "path": "ImagemCopos/sujo19.jpg",
+      "label": "sujo",
+      "dimensions_after_exif": [
+        3000,
+        4000
+      ],
+      "exact_csv_match": false,
+      "nearest_csv_distance": 3504.15,
+      "prediction_full_image": "sujo"
+    },
+    {
+      "path": "ImagemCopos/sujo2.jpg",
+      "label": "sujo",
+      "dimensions_after_exif": [
+        3000,
+        4000
+      ],
+      "exact_csv_match": false,
+      "nearest_csv_distance": 3355.15,
+      "prediction_full_image": "sujo"
+    },
+    {
+      "path": "ImagemCopos/sujo9.jpg",
+      "label": "sujo",
+      "dimensions_after_exif": [
+        3000,
+        4000
+      ],
+      "exact_csv_match": false,
+      "nearest_csv_distance": 3538.44,
+      "prediction_full_image": "sujo"
+    }
+  ],
+  "variants": {
+    "full_image": {
+      "correct": 5,
+      "clean_predicted_clean": 0,
+      "predictions": [
+        "sujo",
+        "sujo",
+        "sujo",
+        "sujo",
+        "sujo",
+        "sujo",
+        "sujo",
+        "sujo",
+        "sujo"
+      ]
+    },
+    "water_crop": {
+      "correct": 5,
+      "clean_predicted_clean": 0,
+      "predictions": [
+        "sujo",
+        "sujo",
+        "sujo",
+        "sujo",
+        "sujo",
+        "sujo",
+        "sujo",
+        "sujo",
+        "sujo"
+      ]
+    },
+    "resize_full_image_4000x3000_bilinear": {
+      "correct": 5,
+      "clean_predicted_clean": 0,
+      "predictions": [
+        "sujo",
+        "sujo",
+        "sujo",
+        "sujo",
+        "sujo",
+        "sujo",
+        "sujo",
+        "sujo",
+        "sujo"
+      ]
+    },
+    "full_image_channels_rbg": {
+      "correct": 5,
+      "clean_predicted_clean": 0,
+      "predictions": [
+        "sujo",
+        "sujo",
+        "sujo",
+        "sujo",
+        "sujo",
+        "sujo",
+        "sujo",
+        "sujo",
+        "sujo"
+      ]
+    },
+    "full_image_channels_grb": {
+      "correct": 5,
+      "clean_predicted_clean": 0,
+      "predictions": [
+        "sujo",
+        "sujo",
+        "sujo",
+        "sujo",
+        "sujo",
+        "sujo",
+        "sujo",
+        "sujo",
+        "sujo"
+      ]
+    },
+    "full_image_channels_gbr": {
+      "correct": 5,
+      "clean_predicted_clean": 0,
+      "predictions": [
+        "sujo",
+        "sujo",
+        "sujo",
+        "sujo",
+        "sujo",
+        "sujo",
+        "sujo",
+        "sujo",
+        "sujo"
+      ]
+    },
+    "full_image_channels_brg": {
+      "correct": 5,
+      "clean_predicted_clean": 0,
+      "predictions": [
+        "sujo",
+        "sujo",
+        "sujo",
+        "sujo",
+        "sujo",
+        "sujo",
+        "sujo",
+        "sujo",
+        "sujo"
+      ]
+    },
+    "full_image_channels_bgr": {
+      "correct": 5,
+      "clean_predicted_clean": 0,
+      "predictions": [
+        "sujo",
+        "sujo",
+        "sujo",
+        "sujo",
+        "sujo",
+        "sujo",
+        "sujo",
+        "sujo",
+        "sujo"
+      ]
+    }
+  },
+  "limitation": "Sem as 50 imagens ou o script que gerou res.csv, não é possível confirmar a extração RGB original ou conferir os rótulos do CSV."
+}

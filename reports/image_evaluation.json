@@ -64,5 +64,5 @@
       "predicted": "sujo"
     }
   ],
-  "limitation": "A característica e as regiões foram escolhidas após inspecionar estas fotos; esta avaliação não mede generalização externa."
+  "limitation": "As duas versões de cada foto são mantidas juntas fora do treino; a característica e as regiões foram escolhidas após inspecionar estas fotos, portanto a avaliação não mede generalização externa."
 }

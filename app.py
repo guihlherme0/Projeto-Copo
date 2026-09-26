@@ -1,19 +1,19 @@
-"""Interface Flask para classificar uma região da foto pelo modelo persistido."""
+"""Interface Flask para classificar uma foto pelo modelo persistido."""
 
 import base64
 import io
 import os
 
 from flask import Flask, render_template, request
-from PIL import Image, ImageOps, UnidentifiedImageError
+from PIL import Image, UnidentifiedImageError
 
-from water_classifier.features import extract_histogram, select_region
+from water_classifier.features import extract_histogram, focus_center, select_region
 from water_classifier.model import load_model
 
 
 MAX_UPLOAD_BYTES = 8 * 1024 * 1024
 MAX_IMAGE_PIXELS = 25_000_000
-ALLOWED_FORMATS = {"JPEG": "image/jpeg", "PNG": "image/png", "WEBP": "image/webp"}
+ALLOWED_FORMATS = {"JPEG", "PNG", "WEBP"}
 Image.MAX_IMAGE_PIXELS = MAX_IMAGE_PIXELS
 
 
@@ -27,17 +27,19 @@ def _parse_crop(form):
 
 def create_app(test_config=None):
     app = Flask(__name__)
-    app.config.update(MODEL_PATH=os.environ.get("WATER_MODEL_PATH", "models/water_model.joblib"),
+    app.config.update(MODEL_PATH=os.environ.get("WATER_MODEL_PATH", "models/water_image_interval.joblib"),
                       MAX_CONTENT_LENGTH=MAX_UPLOAD_BYTES)
     if test_config:
         app.config.update(test_config)
     bundle = load_model(app.config["MODEL_PATH"])
+    requires_crop = bundle["region"] == "water_crop"
 
     @app.context_processor
     def model_info():
         return {
             "training_records": bundle["training_records"],
-            "training_source": "fotos rotuladas" if "training_images" in bundle else "histogramas do CSV",
+            "training_source": "fotos rotuladas" if requires_crop else "histogramas do CSV",
+            "requires_crop": requires_crop,
         }
 
     @app.errorhandler(413)
@@ -59,19 +61,21 @@ def create_app(test_config=None):
         if not raw:
             return render_template("index.html", error="Arquivo vazio."), 400
         try:
-            crop = _parse_crop(request.form)
             with Image.open(io.BytesIO(raw)) as source:
                 if source.format not in ALLOWED_FORMATS:
                     raise ValueError("Use uma imagem JPEG, PNG ou WebP.")
                 if source.width * source.height > MAX_IMAGE_PIXELS:
                     raise ValueError("A imagem excede 25 milhões de pixels.")
                 source.load()
-                normalized_image = ImageOps.exif_transpose(source)
-                histogram = extract_histogram(normalized_image, crop)
-                preview_image = select_region(normalized_image, crop).convert("RGB")
-                preview_image.thumbnail((700, 500))
+                crop = _parse_crop(request.form) if requires_crop else None
+                region = select_region(source, crop)
+                if requires_crop:
+                    region = focus_center(region)
+                region = region.convert("RGB")
+                histogram = extract_histogram(region)
+                region.thumbnail((700, 500))
                 preview_buffer = io.BytesIO()
-                preview_image.save(preview_buffer, format="JPEG", quality=85)
+                region.save(preview_buffer, format="JPEG", quality=85)
             prediction = bundle["pipeline"].predict(histogram.reshape(1, -1))[0]
             if prediction not in ("limpo", "sujo"):
                 raise RuntimeError("Classe prevista inválida.")
